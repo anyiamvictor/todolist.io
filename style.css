@@ -1,0 +1,81 @@
+
+
+*{
+    text-transform: capitalize;
+    font-family: cursive;
+    /* border:1px solid black */
+}
+
+#content{
+    display:flex;
+    flex-direction: column;
+}
+
+.addTaskWrapperClass{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    padding:10px;
+
+}
+
+.addTaskWrapperClass2{
+    /* border:1px solid green; */
+
+}
+
+.editGroup{
+    border:1px solid;
+    width:fit-content;
+    display: flex;
+    background-color: azure;
+    /* transition: all .8s ease-in-out; */
+
+
+}
+
+.editBtn{
+    /* gap:12px; */
+}
+
+.msgBtn{
+    /* padding:2px; */
+    border:1px solid;
+
+    
+}
+
+.hidden{
+    display:none
+}
+.taskWrapper{
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#statusName, #labelName, #titelName, #descName, #idName, #priorityName{
+    font-style: italic;
+    font-size: 14px;
+}
+
+
+header{
+    background-color: black;
+    border-radius:20px;
+    color:white;
+    padding:20px;
+    text-align: center;
+
+}
+
+.createTaskButton{
+    width:200px;
+    border-radius:20px;
+    padding:10px;
+    margin:30px auto;
+    font-size: 20px;
+    cursor:pointer;
+}
