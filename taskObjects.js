@@ -290,7 +290,7 @@ function addTask(tsk ,tskWrapper, todoGrp) {
     idName.textContent = 'ID:';
     descName.textContent = 'Description:'
     titelName.textContent='Title:'
-    label.textContent = 'Status:';
+    label.textContent = 'Completed Task:';
     
     selectStatus.type = 'checkbox';
     descName.id = 'descName';
@@ -301,7 +301,7 @@ function addTask(tsk ,tskWrapper, todoGrp) {
     priorityName.id = 'priorityName';
     deleteTask.id = 'delTask';
     deleteTask.classList.add('deleteButton')
-    deleteTask.textContent = 'check the status  to delete ';
+    deleteTask.textContent = 'click completed to delete ';
     deleteTask.disabled = true;
     
     taskWrapper.id = tsk.id;
@@ -342,7 +342,7 @@ function addTask(tsk ,tskWrapper, todoGrp) {
         deleteTask.style.backgroundColor = '#FF0000'; // Change the button's color
         } else {
             deleteTask.disabled = true;
-            deleteTask.textContent = 'Status must be checked to delete'; // Change the button's text
+            deleteTask.textContent = 'Completed Task must be checked'; // Change the button's text
             deleteTask.style.backgroundColor = ''; // Remove the background color
         }
     });
@@ -354,9 +354,7 @@ function addTask(tsk ,tskWrapper, todoGrp) {
             const delId = todoItem.getAttribute('id');
             todoItem.remove();            
             todoGrp.deleteTask(delId);
-
-        }
-            
+        }            
     });
 
     return tskWrapper;
