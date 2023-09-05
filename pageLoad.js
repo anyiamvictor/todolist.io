@@ -1,4 +1,4 @@
-import { createTaskButton, createTaskInputs } from './taskObjects.js';
+import { createTaskButton } from './taskObjects.js';
 
 function createHeader() {
     const head = document.createElement('header');

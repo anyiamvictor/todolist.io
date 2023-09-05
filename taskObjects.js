@@ -12,8 +12,6 @@ function generateRandomId() {
   return id;
     }
 
-
-
 //object for todo-items
 class TodoItems {
 
@@ -79,28 +77,6 @@ class TodoGroup {
         this.arr = this.arr.filter((task) => task.id !== taskId);
     }
 
-    deleteGroup() {
-        // Assuming you have an array or some other data structure to manage groups
-        const index = groupManager.findIndex(group => group.id === this.id);
-        
-        if (index !== -1) {
-            // Remove the group instance from the array
-            groupManager.splice(index, 1);
-
-            // Optionally, you might want to trigger additional cleanup actions
-            // associated with the removal of the group instance
-            // For example, updating UI, saving data, etc.
-
-            // Finally, delete the properties of the instance to free memory
-            // This is optional as JavaScript's garbage collection will take care of it
-            delete this.arr;
-            delete this.name;
-            delete this.id;
-        } else {
-            console.log('Group not found in the manager.');
-        }
-    }
-
     deleteME() {
         this.remove()
     }
@@ -111,21 +87,20 @@ function createTaskInputs() {
     //calling a new group item class
     const todoGroup = new TodoGroup;
     todoGroup.name = prompt('Enter the group name');    
-    console.log(todoGroup);
+    // console.log(todoGroup);
     
     // creating containers for the entire group of todo items
     const groupWrapper = document.createElement('div');
     groupWrapper.id = `${todoGroup.name}_id`;
-    // const grpWrp = document.getElementById(`${todoGroup.name}_id`);
-    // console.log('ajskjdbcksbchsdbchsd', grpWrp);
+    groupWrapper.classList.add('group_wrapper');
 
     // creating the container for the input elements of the todo items
     const addTaskWrapper = document.createElement('div');
 
     const groupTitle = document.createElement('h1');
     groupTitle.style.textAlign = 'center';
-    groupTitle.textContent = todoGroup.name;
-
+    groupTitle.textContent = todoGroup.name || 'click on Group Settings to enter a name';
+    groupTitle.classList.add('title');
 
     addTaskWrapper.classList.add('addTaskWrapperClass');
     addTaskWrapper.classList.add('addTaskWrapperClass2');
@@ -133,6 +108,7 @@ function createTaskInputs() {
     //creating input elements to enter the todo items
     const frm = document.createElement('form')
     const enterTitle = document.createElement('input');
+    enterTitle.setAttribute('maxlength', '35');
     enterTitle.type = 'text';
 
     enterTitle.id = `task_title_${todoGroup.id}`
@@ -142,6 +118,8 @@ function createTaskInputs() {
     enterDescription.placeholder = 'enter description';
     enterDescription.type = 'text';
     enterDescription.id = `task_description_${todoGroup.id}`;
+    enterDescription.setAttribute('maxlength', '35');
+
 
     const priority = document.createElement('select');
     const priorityValue = document.createElement('p');
@@ -201,6 +179,7 @@ function createTaskInputs() {
         taskDesc.value = '';
         console.log(todoGroup);
     });
+
     //adding the input fields to the form created
     frm.append(enterTitle);
     frm.append(enterDescription);
@@ -209,11 +188,6 @@ function createTaskInputs() {
 
 
     addTaskWrapper.append(frm);
-
-    // addTaskWrapper.append(enterTitle);
-    // addTaskWrapper.append(enterDescription);
-    // addTaskWrapper.append(priority);  
-    // addTaskWrapper.append(addBtn); 
 
     groupWrapper.append(groupTitle);
     groupWrapper.append(groupEdit(groupWrapper));
@@ -272,10 +246,13 @@ function addTask(tsk ,tskWrapper, todoGrp) {
     
     taskWrapper.id = tsk.id;
     idUI.textContent = tsk.id;
-    idUI.id = 'idName';
+    idUI.id = 'idName';    
     titleUI.textContent = tsk.title;
+    titleUI.id="titleUi"
     descriptionUI.textContent = tsk.description;
+    descriptionUI.id='descUi'
     priorityUI.textContent = tsk.priority;
+    priorityUI.id="priorityui"
       
     idWrp.append(idName);
     idWrp.append(idUI);
@@ -314,21 +291,21 @@ function groupEdit(el) {
     const groupBtnMessage = document.createElement('p');
     const deleteGroupBtn = document.createElement('button');
     const renameGroupBtn = document.createElement('button'); 
-    groupBtnMessage.innerHTML = 'click to edit group';
+    groupBtnMessage.innerHTML = 'Group Settings';
 
     groupBtnMessage.classList.add('msgBtn')
     groupActions.classList.add('editGroup');
     deleteGroupBtn.classList.add('hidden');
-    deleteGroupBtn.classList.add('editBtn');   
+    deleteGroupBtn.classList.add('editBtn', 'btn');   
     renameGroupBtn.classList.add('hidden');
-    renameGroupBtn.classList.add('editBtn');
+    renameGroupBtn.classList.add('editBtn', 'btn');
     
 
     groupActions.addEventListener('click', function () {
         deleteGroupBtn.classList.toggle('hidden');
         renameGroupBtn.classList.toggle('hidden');
-        groupBtnMessage.textContent = groupBtnMessage.textContent === 'click to edit group'
-        ? 'click to hide edit' : 'click to edit group';
+        groupBtnMessage.textContent = groupBtnMessage.textContent === 'Group Settings'
+        ? 'click to hide edit' : 'Group Settings';
 
 
     })
@@ -345,7 +322,7 @@ function groupEdit(el) {
         const newName = prompt('Enter a new Group Name');
         //select the first h1 element which happens to be the group name
         const nameContainer = el.querySelector('h1');
-        nameContainer.textContent=newName
+        nameContainer.textContent=newName|| 'click group Setting to add a group name'
 
     })
 
@@ -365,9 +342,7 @@ function createTaskButton() {
     createTaskButton.innerHTML = 'create a task group';
     createTaskButton.addEventListener('click', function () {
         const content = document.getElementById('content');
-        content.append(createTaskInputs());
-
-    
+        content.append(createTaskInputs());    
     })
     
  
