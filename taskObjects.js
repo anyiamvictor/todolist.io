@@ -338,7 +338,7 @@ function addTask(tsk ,tskWrapper, todoGrp) {
     // If the checkbox is checked, enable the delete button; otherwise, disable it
     if (selectStatus.checked) {
         deleteTask.disabled = false;
-        deleteTask.textContent = 'Delete Task';
+        deleteTask.textContent = 'Delete Completed Task';
         deleteTask.style.backgroundColor = '#FF0000'; // Change the button's color
         } else {
             deleteTask.disabled = true;
