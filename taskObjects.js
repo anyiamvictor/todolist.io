@@ -164,12 +164,16 @@ function createTaskInputs() {
 
     enterTitle.id = `task_title_${todoGroup.id}`
     enterTitle.placeholder = 'task name or title';
+    enterTitle.setAttribute('autocomplete', 'off');
+    enterTitle.setAttribute('maxlength', '20');
+
+
     
     const enterDescription = document.createElement('input');
     enterDescription.placeholder = 'enter description';
     enterDescription.type = 'text';
     enterDescription.id = `task_description_${todoGroup.id}`;
-    enterDescription.setAttribute('maxlength', '35');
+    enterDescription.setAttribute('maxlength', '40');
     enterDescription.setAttribute('autocomplete', 'off');
 
 
