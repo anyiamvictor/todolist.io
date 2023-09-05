@@ -90,6 +90,13 @@ body{
     font-size: 14px;
 }
 
+  #delTask{
+    width:150px;
+    padding:5px;
+    font-size: small;
+    font-weight: 900;
+   }
+
 header{
     border-radius:10px;
     padding:20px;
@@ -241,12 +248,7 @@ form input{
 
     }
 
-   #delTask{
-    width:100px;
-    padding:5px;
-    font-size: x-small;
-    font-weight: 900;
-   }
+ 
 
     form{
         flex-direction: column;
@@ -320,6 +322,9 @@ form input{
     width:50px;
 }
 
+#delTask{
+    font-size: x-small
+   }
 
 
 }
