@@ -135,7 +135,7 @@ function createTaskInputs() {
 
     const groupTitle = document.createElement('h1');
     groupTitle.style.textAlign = 'center';
-    groupTitle.textContent = todoGroup.name || 'click on Group Settings to enter a name';
+    groupTitle.textContent = todoGroup.name || 'click on Edit to enter a name';
     groupTitle.classList.add('title');
 
     addTaskWrapper.classList.add('addTaskWrapperClass');
