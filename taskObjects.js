@@ -162,21 +162,35 @@ function createTaskInputs() {
     frm.classList.remove('hidden')
     })
 
+
+    //This is a toggle button that displays and hides all todo tasks. it is passed to the groupedit as an argument
+    const toggleTasksButton = document.createElement('button');
+    toggleTasksButton.textContent = 'Hide Tasks';
+    
+    
+    toggleTasksButton.addEventListener('click', function () {
+        addNewBtn.classList.toggle('hidden')
+        const taskWrappers = groupWrapper.querySelectorAll('.addTaskWrapperClass');
+        taskWrappers.forEach((taskWrapper) => {
+            taskWrapper.classList.toggle('hidden');
+            if (taskWrapper.classList.contains('hidden')) toggleTasksButton.textContent = 'Show Tasks';
+            if (!taskWrapper.classList.contains('hidden')) toggleTasksButton.textContent = 'Hide Tasks';
+
+        });
+    });
+
     enterTitle.id = `task_title_${todoGroup.id}`
     enterTitle.placeholder = 'task name or title';
     enterTitle.setAttribute('autocomplete', 'off');
     enterTitle.setAttribute('maxlength', '20');
 
-
-    
+  
     const enterDescription = document.createElement('input');
     enterDescription.placeholder = 'enter description';
     enterDescription.type = 'text';
     enterDescription.id = `task_description_${todoGroup.id}`;
     enterDescription.setAttribute('maxlength', '40');
     enterDescription.setAttribute('autocomplete', 'off');
-
-
 
     const priority = document.createElement('select');
     const priorityValue = document.createElement('p');
@@ -250,11 +264,9 @@ function createTaskInputs() {
     addTaskWrapper.append(frm);
 
     groupWrapper.append(groupTitle);
-    groupWrapper.append(groupEdit(groupWrapper));
+    groupWrapper.append(groupEdit(groupWrapper, toggleTasksButton));
     groupWrapper.append(addTaskWrapper);
     groupWrapper.append(addNewBtn);
-
-
     
     return groupWrapper;
 
@@ -365,13 +377,13 @@ function addTask(tsk ,tskWrapper, todoGrp) {
 }
 
 
-
-
-function groupEdit(el) {
+function groupEdit(el, elz) {
     const groupActions = document.createElement('div');
     const groupBtnMessage = document.createElement('p');
     const deleteGroupBtn = document.createElement('button');
-    const renameGroupBtn = document.createElement('button'); 
+    const renameGroupBtn = document.createElement('button');
+    
+    
     groupBtnMessage.innerHTML = 'Edit';
 
     groupBtnMessage.classList.add('msgBtn')
@@ -381,11 +393,15 @@ function groupEdit(el) {
     deleteGroupBtn.classList.add('editBtn', 'btn');   
     renameGroupBtn.classList.add('hidden');
     renameGroupBtn.classList.add('editBtn', 'btn');
+    elz.classList.add('hidden');
+    elz.classList.add('editBtn', 'btn');
+
     
 
     groupActions.addEventListener('click', function () {
         deleteGroupBtn.classList.toggle('hidden');
         renameGroupBtn.classList.toggle('hidden');
+        elz.classList.toggle('hidden')
         groupBtnMessage.textContent = groupBtnMessage.textContent === 'Edit'
         ? 'Hide' : 'Edit';
 
@@ -411,6 +427,8 @@ function groupEdit(el) {
     groupActions.append(groupBtnMessage);
     groupActions.append(deleteGroupBtn);
     groupActions.append(renameGroupBtn);
+    groupActions.append(elz);
+
        
     
     return groupActions
@@ -434,3 +452,4 @@ function createTaskButton() {
 };
 
 export { TodoItems, createTaskInputs, addTask, createTaskButton }
+

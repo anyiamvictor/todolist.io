@@ -133,6 +133,17 @@ header{
     transform:scale(.9);
     box-shadow:1px 1px 4px gray;
 }
+
+.hide_div{
+    width:100%;
+    padding:14px;
+    margin:10px auto;
+    text-align: justify;
+     box-shadow:1px 1px 9px gray;
+
+
+
+}
 /* setting the class to this to change the position of the create group button */
 .groupadded{
     position:fixed;
