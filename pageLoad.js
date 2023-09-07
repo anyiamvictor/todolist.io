@@ -1,5 +1,8 @@
 import { createTaskButton } from './taskObjects.js';
 
+const date = new Date();
+console.log(date)
+
 function createHeader() {
     const head = document.createElement('header');
     const headTitle = document.createElement('h1');
@@ -10,10 +13,11 @@ function createHeader() {
     
 }
 
-export default function TaskUIComponent() {
+export default function Finally() {
     const content = document.getElementById('content');
     content.append(createHeader());
     content.append(createTaskButton());
+
 }
 
 

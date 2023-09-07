@@ -1,8 +1,4 @@
-import TaskUIComponent from './pageLoad.js';
+import Finally from './pageLoad.js';
 
-document.addEventListener('DOMContentLoaded', TaskUIComponent);
-
-
-
-
+document.addEventListener('DOMContentLoaded', Finally());
 
